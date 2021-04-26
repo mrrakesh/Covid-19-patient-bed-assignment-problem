@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %} 
+
+
+    <div class="main-content">
+        <p><strong>Patient Name: </strong> <span>{{object.name}}</span></p>
+        <p><strong>Bed Number: </strong> <span>{{object.bed.id}}</span></p>
+        <p><strong>Bed Type: </strong> <span>{{object.bed.bed_type}}</span></p>
+        <p><strong>Patient Email: </strong> <span>{{object.email}}</span></p>
+        <p><strong>Patient Address: </strong> <span>{{object.address}}</span></p>
+        <p><strong>Patient gender: </strong> <span>{{object.gender}}</span></p>
+        {% if object.checked_out %}
+            <p><strong>Status: </strong> <span>Checked out</span></p>
+        {% else %}
+            <p><strong>Status: </strong> <span>Bed Assigned</span></p>
+        {% endif %}
+    </table>
+    </div>
+{% endblock content%}

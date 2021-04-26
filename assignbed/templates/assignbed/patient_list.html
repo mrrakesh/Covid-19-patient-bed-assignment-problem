@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="float-right mb-2"> <a class="btn btn-primary" href="{% url 'patient-create' %}"> Add New Patient </a> </div>
+<div class="clearfix"></div>
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert-{{ message.tags }}">
+            {{ message|safe }}
+        </div>
+    {% endfor %}
+{% endif %}
+<div class="patient-block">
+    <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">Patient Name</th>
+            <th scope="col">Bed Number</th>
+            <th scope="col">Status</th>
+            <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for patient in object_list %}
+             <tr>     
+                <td> {{patient.name}}</td>
+                <td> {{patient.bed.id}}</td>
+                {% if patient.checked_out %}
+                    <td class=text-danger> Checked out </td>
+                {% else %}
+                    <td class=text-success> Bed Assigned </td>
+                {% endif %}
+                <td>
+                    <a class='mr-2' href="{% url 'patient-detail' patient.id patient.slug %}"> Details </a>
+                    {% if not patient.checked_out %}
+                        <a href="{% url 'patient-checkout' patient.id %}"> Checkout </a>
+                    {% endif %}
+                </td>
+            </tr>
+
+        {% empty %}
+            <p>No patient found</p>
+    {% endfor %}
+</div>
+{% endblock content %}

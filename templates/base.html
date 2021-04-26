@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+  <link rel="stylesheet" href="{% static 'assets/css/style.css' %}" />
+
+  {% if page_title %}
+  <title>{{ page_title }} | Covid-19 Bed assignment problem</title>
+  {% else %}
+  <title>Covid-19 Bed assignment problem</title>
+  {% endif %}
+</head>
+
+<body>
+  <header>
+    {% include 'header.html' %}
+  </header>
+
+  <main>
+    <div class="container mt-5">
+      <div class="row">
+        <!--Main content-->
+        <div class="col-md-12">{% block content %}{% endblock content%}</div>
+        <!--Main content ends-->
+        
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    {% include 'footer.html' %}
+  </footer>
+
+</body>
+
+</html>

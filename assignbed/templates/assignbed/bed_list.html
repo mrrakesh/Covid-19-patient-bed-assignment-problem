@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="float-right mb-2"> <a class="btn btn-primary" href="{% url 'bed-create' %}"> Add New bed </a> </div>
+<div class="clearfix"></div>
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert-{{ message.tags }}">
+            {{ message|safe }}
+        </div>
+    {% endfor %}
+{% endif %}
+<div class="bed-block">
+    <table class="table">
+        <thead>
+            <tr>
+            <th scope="col">Bed Number</th>
+            <th scope="col">Bed Type</th>
+            <th scope="col">Status</th>
+            <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+                {% for bed in object_list %}
+                <tr>     
+                    <td> {{bed.id}}</td>
+                    <td> {{ bed.bed_type}}</td>
+                    {% if bed.is_available %}
+                        <td class=text-success> Available </td>
+                    {% else %}
+                        <td class=text-danger> Occupied </td>
+                    {% endif %}
+                    <td><a href="{% url 'bed-detail' bed.id %}"> Details </a></td>
+                
+                </tr>
+                    {% empty %}
+                <p>No bed found</p>
+            {% endfor %}
+        </tbody>
+    </table>   
+</div>      
+{% endblock content %}

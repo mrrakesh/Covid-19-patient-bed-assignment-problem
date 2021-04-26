@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %} 
+    <div class="main-content">
+    
+        {% for bed in bed_obj %}
+            <p>Bed Number : {{bed.id}}</p>
+            <p> Bed Type : {{ bed.bed_type}}</p>
+        {% if bed.is_available %}
+                <p> Current Status : <span class=text-success> Available </span></p>
+            {% else %}
+                <p> Current Status : <span class=text-danger> Occupied </span> </p>
+            {% endif %}
+        {% endfor %}
+        {% if patient_obj %}
+            <h5>Patient details:</h5>
+            <table class="table">
+                <thead>
+                    <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Gender</th>
+                    <th scope="col">Email address</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Checkout status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for patient in patient_obj %}
+                    <tr>     
+                        <td> {{patient.name}}</td>
+                        <td> {{ patient.gender}}</td>
+                        <td> {{ patient.email}}</td>
+                        <td> {{ patient.address}}</td>
+                        {% if patient.checked_out %}
+                            <td class=text-danger> Checked Out</td>
+                        {% else %}
+                            <td class=text-success> Bed Assigned</td>
+                        {% endif %}
+                    </tr>
+                    {% endfor %}   
+
+                </tbody>
+            </table>     
+        {% endif %}       
+    </div>
+{% endblock content%}
