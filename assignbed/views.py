@@ -11,7 +11,6 @@ class PatientListView(generic.ListView):
 
     model = Patient
     ordering = ['-created_at']
-    print(Bed.objects.last().id + 1)
 
     def get_context_data(self, **kwargs):
 
